@@ -1,0 +1,38 @@
+﻿@model ChatApp.Models.ChatViewModel
+
+@{
+    ViewData["Title"] = "Chat Page";
+}
+
+<div class="container">
+    <h2 class="mt-4">Messages:</h2>
+
+    <div class="message-list mb-4">
+        @foreach (var msg in Model.Messages)
+        {
+        <div class="card mb-3 shadow-sm" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text">@msg.MessageText</p>
+                <footer class="blockquote-footer">@msg.Sender</footer>
+            </div>
+        </div>
+        }
+    </div>
+
+    <div class="card p-4 bg-light">
+        <h5>Send a new message</h5>
+        <form asp-action="Send" method="post">
+            <div class="row">
+                <div class="col-md-8">
+                    <label>Message:</label>
+                    <textarea asp-for="CurrentMessage.MessageText" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label>Sender Name:</label>
+                    <input asp-for="CurrentMessage.Sender" class="form-control" />
+                    <button type="submit" class="btn btn-primary mt-3 w-100">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

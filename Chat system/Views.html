@@ -1,36 +1,31 @@
-﻿@model ChatApp.Models.ChatViewModel
+@model ChatApp.Models.ChatViewModel
 
-@{
-    ViewData["Title"] = "Chat Page";
-}
-
-<div class="container">
-    <h2 class="mt-4">Messages:</h2>
-
-    <div class="message-list mb-4">
+<div class="container mt-4">
+    <h3>Messages:</h3>
+    <div class="border p-3 mb-4" style="background-color: #f8f9fa; min-height: 200px;">
         @foreach (var msg in Model.Messages)
         {
-        <div class="card mb-3 shadow-sm" style="width: 18rem;">
-            <div class="card-body">
-                <p class="card-text">@msg.MessageText</p>
-                <footer class="blockquote-footer">@msg.Sender</footer>
+            <div class="card mb-2" style="max-width: 400px;">
+                <div class="card-body">
+                    <p class="mb-1">@msg.MessageText</p>
+                    <small class="text-muted">— @msg.Sender</small>
+                </div>
             </div>
-        </div>
         }
     </div>
 
-    <div class="card p-4 bg-light">
+    <div class="card p-3">
         <h5>Send a new message</h5>
         <form asp-action="Send" method="post">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-8">
                     <label>Message:</label>
-                    <textarea asp-for="CurrentMessage.MessageText" class="form-control" rows="3"></textarea>
+                    <textarea asp-for="CurrentMessage.MessageText" class="form-control"></textarea>
                 </div>
-                <div class="col-md-4">
+                <div class="col-4">
                     <label>Sender Name:</label>
                     <input asp-for="CurrentMessage.Sender" class="form-control" />
-                    <button type="submit" class="btn btn-primary mt-3 w-100">Send</button>
+                    <button type="submit" class="btn btn-primary mt-3">Send</button>
                 </div>
             </div>
         </form>
